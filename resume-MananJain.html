@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manan Jain — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0e0e0e;
+      --paper: #f5f0e8;
+      --cream: #ede8dc;
+      --accent: #c84b2f;
+      --muted: #7a7060;
+      --line: #d0c9b8;
+      --mono: 'DM Mono', monospace;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'Outfit', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    header {
+      padding: 64px 56px 48px;
+      border-bottom: 1.5px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      animation: fadeSlideUp 0.8s ease both;
+    }
+
+    .name-block h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .name-block h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-block {
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-block a:hover { border-color: var(--accent); }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 56px 80px;
+    }
+
+    section {
+      padding: 44px 0;
+      border-bottom: 1px solid var(--line);
+      animation: fadeSlideUp 0.8s ease both;
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+      margin-bottom: 32px;
+    }
+
+    .pillar {
+      padding: 24px 22px;
+      border-right: 1px solid var(--line);
+    }
+
+    .pillar:last-child { border-right: none; }
+
+    .pillar-icon { font-size: 22px; margin-bottom: 10px; }
+
+    .pillar-title {
+      font-weight: 600;
+      font-size: 13.5px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .pillar-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .about-text {
+      font-size: 16.5px;
+      line-height: 1.8;
+      color: #2a2520;
+      max-width: 700px;
+      font-weight: 300;
+    }
+
+    .about-text strong {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 20px 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+
+    .skill-card-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .skill-card-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .skill-card-desc {
+      margin-top: 6px;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .skill-bar {
+      margin-top: 12px;
+      height: 2px;
+      background: var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: growBar 1.2s cubic-bezier(0.4,0,0.2,1) both;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes growBar { from { width: 0; } }
+
+    .edu-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      padding: 28px 28px 24px;
+    }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .edu-college {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 10px;
+    }
+
+    .edu-university {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .edu-note {
+      margin-top: 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+    }
+
+    .project-item {
+      padding: 20px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .project-item:last-child { border-bottom: none; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-name {
+      font-weight: 500;
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(200,75,47,0.08);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .project-desc {
+      margin-top: 6px;
+      font-size: 13.5px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .traits-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trait {
+      padding: 9px 18px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 400;
+      background: var(--cream);
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .trait:hover {
+      background: var(--accent);
+      color: var(--paper);
+      border-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 0 0;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+
+    @media print { body::before { display: none; } }
+
+    @media (max-width: 700px) {
+      header, .page { padding-left: 24px; padding-right: 24px; }
+      header { grid-template-columns: 1fr; }
+      .contact-block { text-align: left; }
+      .pillars { grid-template-columns: 1fr; }
+      .pillar { border-right: none; border-bottom: 1px solid var(--line); }
+      .pillar:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="name-block">
+    <h1>Manan <em>Jain</em></h1>
+    <p class="tagline">First-Year IT Student &nbsp;&middot;&nbsp; Thinker &nbsp;&middot;&nbsp; Communicator &nbsp;&middot;&nbsp; Builder in Progress</p>
+  </div>
+  <div class="contact-block">
+    <div>&#128205; Delhi, India</div>
+    <div><a href="mailto:manan20082002@gmail.com">manan20082002@gmail.com</a></div>
+    <div><a href="https://share.google/gsGFISu6Z0B0ylBrb" target="_blank">share.google/gsGFISu6Z0B0ylBrb</a></div>
+    <div><a href="https://www.linkedin.com/in/manan-jain-89a12937b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">linkedin.com/in/manan-jain</a></div>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- About -->
+  <section>
+    <div class="section-label">About</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">&#9881;&#65039;</div>
+        <div class="pillar-title">Technical Foundation</div>
+        <div class="pillar-desc">C++ and Python basics including variables, loops, functions and arrays. Actively building deeper fluency every day.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#129504;</div>
+        <div class="pillar-title">Problem Solving</div>
+        <div class="pillar-desc">Structured, patient approach to breaking down complex problems. Strong at identifying edge cases and thinking through logic step by step.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">&#128172;</div>
+        <div class="pillar-title">Communication</div>
+        <div class="pillar-desc">Clear, courteous and collaborative. Comfortable explaining ideas to peers, asking the right questions, and working respectfully in teams.</div>
+      </div>
+    </div>
+    <p class="about-text">
+      A <strong>first-year Information Technology student</strong> at BPIT, Delhi, who believes great outcomes come from combining solid technical skill, sharp analytical thinking, and clear communication in equal measure. I am building my programming foundation in <strong>C++ and Python</strong>, practicing problem decomposition, and bringing the same thoroughness and courtesy to conversations that I apply to code. Early in my journey but earnest in my effort.
+    </p>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-card">
+      <div class="edu-row">
+        <div class="edu-degree">B.Tech &mdash; Information Technology</div>
+        <div class="edu-year">2025 &mdash; 2029</div>
+      </div>
+      <div class="edu-college">Bhagwan Parshuram Institute of Technology (BPIT)</div>
+      <div class="edu-university">Affiliated to Guru Gobind Singh Indraprastha University (GGSIPU) &middot; Delhi</div>
+      <div class="edu-note">Coursework: Introduction to Programming (C++), Data Structures (ongoing), Discrete Mathematics, Engineering Mathematics, Digital Logic</div>
+    </div>
+  </section>
+
+  <!-- Technical Skills -->
+  <section>
+    <div class="section-label">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-label">Language</div>
+        <div class="skill-card-title">C++</div>
+        <div class="skill-card-desc">Variables, data types, loops, functions, arrays, basic OOP concepts (classes, objects)</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:52%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Language</div>
+        <div class="skill-card-title">Python</div>
+        <div class="skill-card-desc">Variables, conditionals, loops, functions and basic I/O; comfortable with Python syntax and scripting fundamentals</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:48%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Concept</div>
+        <div class="skill-card-title">Algorithmic Thinking</div>
+        <div class="skill-card-desc">Breaking problems into steps, tracing execution mentally, identifying edge cases</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Tool</div>
+        <div class="skill-card-title">Dev Environment</div>
+        <div class="skill-card-desc">VS Code, GCC compiler, terminal basics, introductory Git usage</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:40%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Concept</div>
+        <div class="skill-card-title">CS Fundamentals</div>
+        <div class="skill-card-desc">Number systems, Boolean logic, basic data structures awareness, flowcharting</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:48%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Tool</div>
+        <div class="skill-card-title">AI-Assisted Workflows</div>
+        <div class="skill-card-desc">Proficient in leveraging AI tools (ChatGPT, Claude, Copilot) to accelerate research, debug code, draft content and solve problems faster</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Skill</div>
+        <div class="skill-card-title">AI Implementation</div>
+        <div class="skill-card-desc">Applies artificial intelligence tools strategically into everyday tasks — from writing to coding — to reduce time consumption and improve output quality</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:72%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Skill</div>
+        <div class="skill-card-title">Prompt Engineering</div>
+        <div class="skill-card-desc">Skilled at crafting clear, structured prompts to get precise, useful outputs from AI models — a critical skill in modern tech workflows</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section>
+    <div class="section-label">Projects</div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <span class="project-name">Basic Calculator (CLI)</span>
+        <span class="project-tag">C++ &middot; Academic</span>
+      </div>
+      <div class="project-desc">Implemented a command-line calculator supporting arithmetic operations with user input validation and switch-case control structures. Handled edge cases such as division by zero and invalid input gracefully.</div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <span class="project-name">Student Grade Tracker</span>
+        <span class="project-tag">C++ &middot; Personal</span>
+      </div>
+      <div class="project-desc">Built a program to store and compute average grades for a list of students using arrays and functions. Focused on modular design by separating input, computation, and output into distinct functions.</div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-header">
+        <span class="project-name">Number Pattern Printer</span>
+        <span class="project-tag">C++ &middot; Academic</span>
+      </div>
+      <div class="project-desc">Generated a variety of number and star patterns using nested loops. Emphasis on understanding loop control flow and translating visual patterns into precise code logic.</div>
+    </div>
+  </section>
+
+  <!-- Strengths -->
+  <section>
+    <div class="section-label">Strengths</div>
+    <div class="traits-list">
+      <div class="trait">Analytical Thinking</div>
+      <div class="trait">Clear Communication</div>
+      <div class="trait">Active Listening</div>
+      <div class="trait">Courteous &amp; Professional</div>
+      <div class="trait">Attention to Detail</div>
+      <div class="trait">Collaborative</div>
+      <div class="trait">Patient Problem Solver</div>
+      <div class="trait">Structured Approach</div>
+      <div class="trait">Eager to Learn</div>
+    </div>
+  </section>
+
+  <!-- Extracurriculars -->
+  <section>
+    <div class="section-label">Extracurriculars &amp; Interests</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-label">Interest</div>
+        <div class="skill-card-title">Competitive Programming</div>
+        <div class="skill-card-desc">Exploring beginner problems on Codeforces and LeetCode to sharpen algorithmic thinking</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Activity</div>
+        <div class="skill-card-title">Debate &amp; Discussion</div>
+        <div class="skill-card-desc">Participated in school-level debates; comfortable articulating and defending structured arguments in front of an audience</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Interest</div>
+        <div class="skill-card-title">Technology Reading</div>
+        <div class="skill-card-desc">Regularly reading about software development, computer history, and how modern systems are built</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    resume-MananJain &nbsp;&middot;&nbsp; BPIT &middot; GGSIPU &nbsp;&middot;&nbsp; Delhi, India
+  </footer>
+
+</div>
+</body>
+</html>
